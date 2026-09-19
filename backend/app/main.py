@@ -5,12 +5,12 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
-from backend.app.config import settings
-from backend.app.database.session import init_db, check_db_connection, SessionLocal, engine
-from backend.database.seed_data import seed_database
-from backend.api import api_router
-from backend.ai.max_service import max_service
-from backend.mojo.bridge import mojo_bridge
+from app.config import settings
+from app.database.session import init_db, check_db_connection, SessionLocal, engine
+from app.database.seed_data import seed_database
+from app.api import api_router
+from app.ai.max_service import max_service
+from app.mojo.bridge import mojo_bridge
 
 logging.basicConfig(
     level=logging.INFO,
