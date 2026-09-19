@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from backend.app.config import settings
-from backend.database.session import init_db, check_db_connection, SessionLocal, engine
+from backend.app.database.session import init_db, check_db_connection, SessionLocal, engine
 from backend.database.seed_data import seed_database
 from backend.api import api_router
 from backend.ai.max_service import max_service
