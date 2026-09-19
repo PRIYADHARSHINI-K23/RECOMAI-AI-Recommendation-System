@@ -18,10 +18,16 @@ class Settings:
 
     # Database URLs
     # Primary required: PostgreSQL with psycopg3 driver
-    DATABASE_URL: str = os.getenv(
+    # Ensure the URL includes the psycopg driver. Render provides a plain 'postgresql://' URL.
+    _raw_db_url = os.getenv(
         "DATABASE_URL",
-        "postgresql+psycopg://postgres:postgres@localhost:5432/recomai_db"
+        "postgresql+psycopg://postgres:postgres@localhost:5432/recomai_db",
     )
+    if _raw_db_url.startswith("postgresql://"):
+        DATABASE_URL: str = _raw_db_url.replace("postgresql://", "postgresql+psycopg://", 1)
+    else:
+        DATABASE_URL: str = _raw_db_url
+
     FALLBACK_SQLITE_URL: str = os.getenv(
         "FALLBACK_SQLITE_URL",
         f"sqlite:///{BASE_DIR / 'recomai_local.db'}"
